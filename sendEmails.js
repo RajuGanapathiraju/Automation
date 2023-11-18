@@ -6,20 +6,8 @@ const ObjectsToCsv = require('objects-to-csv');
 const nodemailer = require('nodemailer');
 var sesTransport = require('nodemailer-ses-transport');
 var smtpPassword = require('aws-smtp-credentials');
-const config = require('dotenv').config({ path: '/Users/rajugy/Documents/scripts/.env' })
+const config = require('dotenv').config({ path: '/path/to/env/file' })
 
-// let mailTransporter = nodemailer.createTransport({	
-// 	service: 'gmail',
-// 	auth: {
-// 		user: process.env.GMAIL_USERNAME,
-// 		pass: process.env.GMAIL_PASSWORD
-// 	}
-// });
-
-// let mailTransporter = nodemailer.createTransport(sesTransport({
-//   accessKeyId: process.env.accessKeyId,
-//   secretAccessKey: process.env.accessKey
-// }));
 			
 var mailTransporter = nodemailer.createTransport({
   port: 465,
@@ -57,10 +45,10 @@ function start(db) {
 
                     
                     let mailDetails = {
-	from: 'security <trojans@insideview.com>',
+	from: 'security <security@domain.com>',
 	to: `${item}`,
-	cc: `trojans@insideview.com`,
-	subject: 'File shared outside IV over email',
+	cc: `security@domain.com`,
+	subject: 'File shared outside company over email',
 	html: `<html>
 <body>
 
@@ -72,7 +60,7 @@ function start(db) {
 </p>
 <p>2. Who is that recipient ? Customer or Personal
 </p>
-<p>3. What is that file and does it belong to IV ?
+<p>3. What is that file and does it belong to our company ?
 </p>
 
 

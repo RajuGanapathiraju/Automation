@@ -3,7 +3,7 @@ var async = require('async');
 var unique = require('unique-array');
 var hdate = require('human-date')
 const config = require('dotenv').config({
-    path: '/Users/rajugy/Documents/scripts/.env'
+    path: '/path/to/env/file'
 });
 
 let alarm_array = [];
@@ -61,7 +61,7 @@ function start(db) {
 
     function filterOut(alarms_data) {
         async.forEach(alarms_data, (alarm, cb) => {
-            if (alarm.destination_username.indexOf('@insideview.com') == -1 && alarm.destination_username.indexOf('@demandbase.com') == -1) {
+            if (alarm.destination_username.indexOf('@domain.com') == -1 && alarm.destination_username.indexOf('@domain2.com') == -1) {
                 alarm_array.push(alarm);
                 cb();
             } else {
@@ -79,7 +79,7 @@ function start(db) {
         var dataString = '@request_body';
 
         var options = {
-            url: 'https://insideview.alienvault.cloud/api/2.0/oauth/token?grant_type=client_credentials',
+            url: 'https://giveyoururl.com/api/2.0/oauth/token?grant_type=client_credentials',
             method: 'POST',
             body: dataString,
             auth: {
@@ -111,7 +111,7 @@ function start(db) {
         };
 
         var options = {
-            url: `https://insideview.alienvault.cloud/api/2.0/alarms?size=1000&status=open&rule_intent=Environmental%20Awareness&rule_method=File%20Shared%20Externally&rule_strategy=Filesharing%20outside%20IV%20over%20email&priority_label=low&alarm_sensor_sources=cf60463c-de16-45ff-946e-627aecbb53d9&timestamp_occured_gte=${parseInt(Date.now())-86400000}&timestamp_occured_lte=${Date.now()}`,
+            url: `https://yoururl.com/api/2.0/alarms?size=1000&status=open&rule_intent=Environmental%20Awareness&rule_method=File%20Shared%20Externally&rule_strategy=Filesharing%20outside%20IV%20over%20email&priority_label=low&alarm_sensor_sources=cf60463c-de16-45ff-946e-627aecbb53d9&timestamp_occured_gte=${parseInt(Date.now())-86400000}&timestamp_occured_lte=${Date.now()}`,
             headers: headers
         };
 
